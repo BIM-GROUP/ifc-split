@@ -1,0 +1,6 @@
+IfcLocalPlacement
+IfcObjectPlacement
+IfcAxis2Placement2D
+IfcAxis2Placement3D
+IfcDirection
+IfcCartesianPoint

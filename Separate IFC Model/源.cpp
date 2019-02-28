@@ -7,11 +7,11 @@
 #include <string.h>
 #include <time.h>
 using namespace std;
-//ÎÄ¼ş¼ĞÃû
+//æ–‡ä»¶å¤¹å
 string
-    System_Str = "ÏµÍ³ÎÄ¼ş",
-	Configure_Str = "ÅäÖÃÎÄ¼ş",
-	OutPut_Str = "Êä³öÎÄ¼ş";
+    System_Str = "ç³»ç»Ÿæ–‡ä»¶",
+	Configure_Str = "é…ç½®æ–‡ä»¶",
+	OutPut_Str = "è¾“å‡ºæ–‡ä»¶";
 /* 
     a : 97
 	z : 122
@@ -19,12 +19,12 @@ string
 	Z : 90
 */
 
-string Convert_String(string str)//½«×Ö·û´®ÖĞµÄĞ¡Ğ´×ÖÄ¸×ª»»Îª´óĞ´µÄº¯Êı
+string Convert_String(string str)//å°†å­—ç¬¦ä¸²ä¸­çš„å°å†™å­—æ¯è½¬æ¢ä¸ºå¤§å†™çš„å‡½æ•°
 {
-	//cout << ">´ı×ª»»µÄ×Ö·û´®Îª£º" << str << endl;
+	//cout << ">å¾…è½¬æ¢çš„å­—ç¬¦ä¸²ä¸ºï¼š" << str << endl;
 	const char* c = str.c_str();
-	string Convert_str;//×ª»»ºóµÄ×Ö·û´®
-	char Convert_c;//×ª»»ºóµÄ×Ö·û
+	string Convert_str;//è½¬æ¢åçš„å­—ç¬¦ä¸²
+	char Convert_c;//è½¬æ¢åçš„å­—ç¬¦
 	for (unsigned int i = 0; i < str.size(); i++, c++)
 	{
 		if (*c > 96 && *c < 123)
@@ -35,40 +35,40 @@ string Convert_String(string str)//½«×Ö·û´®ÖĞµÄĞ¡Ğ´×ÖÄ¸×ª»»Îª´óĞ´µÄº¯Êı
 			Convert_c = *c;
 		Convert_str.append(1, Convert_c);
 	}
-	//cout << "+×ª»»ºóµÄ×Ö·û´®Îª£º" << Convert_str << endl;
+	//cout << "+è½¬æ¢åçš„å­—ç¬¦ä¸²ä¸ºï¼š" << Convert_str << endl;
 	return Convert_str;
 }
 
-bool Inspect(string Class_Name,int& Class_Number)//¼ì²é³ÌĞò£¬È±ÉÙÅäÖÃÎÄ¼şÊ±ÖÕÖ¹³ÌĞò£¬È±ÉÙÏµÍ³ÎÄ¼şÊ±´´½¨ÎÄ¼ş¡£
+bool Inspect(string Class_Name,int& Class_Number)//æ£€æŸ¥ç¨‹åºï¼Œç¼ºå°‘é…ç½®æ–‡ä»¶æ—¶ç»ˆæ­¢ç¨‹åºï¼Œç¼ºå°‘ç³»ç»Ÿæ–‡ä»¶æ—¶åˆ›å»ºæ–‡ä»¶ã€‚
 {
-	ifstream Class_In(Configure_Str + "/" + Class_Name + "ÀàĞÍ.txt");
-	ifstream Class_Out(System_Str + "/" + Class_Name + "ÀàĞÍ");
-	ifstream ClassNum_In(System_Str + "/" + Class_Name + "ÊıÁ¿");
+	ifstream Class_In(Configure_Str + "/" + Class_Name + "ç±»å‹.txt");
+	ifstream Class_Out(System_Str + "/" + Class_Name + "ç±»å‹");
+	ifstream ClassNum_In(System_Str + "/" + Class_Name + "æ•°é‡");
 	string u;
 	bool n = false;
 	cout << "+";
 	if (!Class_In)
 	{
-		cout << Class_Name + Configure_Str << "²»´æÔÚ£¬½«ÖÕÖ¹³ÌĞò¡£" << endl;
+		cout << Class_Name + Configure_Str << "ä¸å­˜åœ¨ï¼Œå°†ç»ˆæ­¢ç¨‹åºã€‚" << endl;
 		return false;
 	}
 	else
 	{
-		cout << Class_Name + Configure_Str << "´æÔÚ£¬ÇëÎÊÊÇ·ñ¸üĞÂ£¿" << endl;
+		cout << Class_Name + Configure_Str << "å­˜åœ¨ï¼Œè¯·é—®æ˜¯å¦æ›´æ–°ï¼Ÿ" << endl;
 		cin >> n;
 	}
 	if (!Class_Out)
 	{
 		cout << ">";
-		cout << Class_Name + System_Str << "²»´æÔÚ£¬½«Ç¿ÖÆ¸üĞÂ¡£" << endl;
+		cout << Class_Name + System_Str << "ä¸å­˜åœ¨ï¼Œå°†å¼ºåˆ¶æ›´æ–°ã€‚" << endl;
 		CreateDirectory(System_Str.c_str(), NULL);
 		n = true;
 	}
 	
 	if (n)
 	{
-		ofstream ClassOut(System_Str + "/" + Class_Name + "ÀàĞÍ");
-		ofstream ClassNum_Out(System_Str + "/" + Class_Name + "ÊıÁ¿");
+		ofstream ClassOut(System_Str + "/" + Class_Name + "ç±»å‹");
+		ofstream ClassNum_Out(System_Str + "/" + Class_Name + "æ•°é‡");
 		for (string str; getline(Class_In, str);Class_Number++)
 		{
 			str = Convert_String(str);
@@ -84,22 +84,22 @@ bool Inspect(string Class_Name,int& Class_Number)//¼ì²é³ÌĞò£¬È±ÉÙÅäÖÃÎÄ¼şÊ±ÖÕÖ¹³
 	return true;
 }
 
-void Inspect(string* Class,int n)//ÖØÔØ¼ì²éº¯Êı£¬½«×ª»»ºóµÄÊµÀıÀàĞÍÊäÈëµ½²éÑ¯Êı×éÀïÃæ¡£
+void Inspect(string* Class,int n)//é‡è½½æ£€æŸ¥å‡½æ•°ï¼Œå°†è½¬æ¢åçš„å®ä¾‹ç±»å‹è¾“å…¥åˆ°æŸ¥è¯¢æ•°ç»„é‡Œé¢ã€‚
 {
-	ifstream C_In(System_Str + "/" + Class[0] + "ÀàĞÍ");
+	ifstream C_In(System_Str + "/" + Class[0] + "ç±»å‹");
 	for (int i = 0; i < n; i++)
 		getline(C_In, Class[i + 1]);
 }
 
 string getClass(string str,long& FCN)
 {
-	//ÌáÈ¡ÊµÀıÀàĞÍ
+	//æå–å®ä¾‹ç±»å‹
 	const char* c = str.c_str();
 	if (*c != '#')
 		return "0";
 	string n;
 	long nn;
-	string s;//¼ÆÀàĞÍÆ÷
+	string s;//è®¡ç±»å‹å™¨
 	for (;;)
 	{
 		if (*c == '#')
@@ -120,7 +120,7 @@ string getClass(string str,long& FCN)
 		FCN = nn;
 	for (;;)
 	{
-		//»ñÈ¡ÊµÀıÀàĞÍ
+		//è·å–å®ä¾‹ç±»å‹
 		if (*c == '=')
 		{
 			for (;;)
@@ -146,7 +146,7 @@ bool Inspect(string str, string Class,string* ClassType, int n)
 	return 0;
 }
 
-//´Ó×Ö·û´®ÖĞ»ñµÃÊµÀı±àºÅ²¢ÇÒ¼ÇÂ¼
+//ä»å­—ç¬¦ä¸²ä¸­è·å¾—å®ä¾‹ç¼–å·å¹¶ä¸”è®°å½•
 long getNum(string str, long* Num)
 {
 	string n;
@@ -207,7 +207,7 @@ void SeparateClass(string Fill, string* L, int LN, string* B, int BN, string* M,
 	CreateDirectory(OutPut_Str.c_str(), NULL);
 	ifstream fin(Fill);
 	string Class;
-	//´´½¨ÎÄ¼şÁ÷
+	//åˆ›å»ºæ–‡ä»¶æµ
 	ofstream LO(OutPut_Str + "/" + L[0] + ".txt");
 	ofstream BO(OutPut_Str + "/" + B[0] + ".txt");
 	ofstream MO(OutPut_Str + "/" + M[0] + ".txt");
@@ -233,14 +233,14 @@ void SeparateClass(string Fill, string* L, int LN, string* B, int BN, string* M,
 	long* IfcFillClass = new long[FCN+1];
 	ifstream finI(Fill);
 	ifstream BOI(OutPut_Str + "/" + B[0] + ".txt");
-	//ÎÄ¼şÊäÈëÄÚ´æ£º
+	//æ–‡ä»¶è¾“å…¥å†…å­˜ï¼š
 	int un = 0;
 	for (string str; getline(finI, str);)
 	{
 		IfcFill[getNum(str,IfcFillClass)] = str;
 		un++;
 	}
-	//µİ¹é²éÕÒÄ£ĞÍ
+	//é€’å½’æŸ¥æ‰¾æ¨¡å‹
 	for (string str; getline(BOI, str);)
 	{
 		MoPutOut(str, IfcFill, IfcFillClass);
@@ -254,8 +254,8 @@ void SeparateClass(string Fill, string* L, int LN, string* B, int BN, string* M,
 			bn++;
 		}
 	}
-	cout << "Â¼ÈëĞĞÊı " << un << endl;
-	cout << "Êä³öĞĞÊı" << bn << endl;
+	cout << "å½•å…¥è¡Œæ•° " << un << endl;
+	cout << "è¾“å‡ºè¡Œæ•°" << bn << endl;
 	MO.close();
 }
 
@@ -268,20 +268,20 @@ int main()
 		Z : 90
 		a = A + 32;
 	*/
-	//ÎÄ×Ö¶Î
+	//æ–‡å­—æ®µ
 	string 
-		Location_Str = "×ø±êÊµÀı",
-		BuildingElement_Str = "½¨Öş¹¹¼ş",
-		Model_Str = "Ä£ĞÍÊµÀı";
-	//ÊµÀıÀàĞÍ¼ÆÊıÆ÷
+		Location_Str = "åæ ‡å®ä¾‹",
+		BuildingElement_Str = "å»ºç­‘æ„ä»¶",
+		Model_Str = "æ¨¡å‹å®ä¾‹";
+	//å®ä¾‹ç±»å‹è®¡æ•°å™¨
 	int LocationClass_Number = 0,
 		BuildingElementClass_Number = 0,
 		ModelClass_Number = 0;
-	//¼ÆÊıÆ÷µÄÒıÓÃ
+	//è®¡æ•°å™¨çš„å¼•ç”¨
 	int &LocationCite = LocationClass_Number,
 		&BuildingElementCite = BuildingElementClass_Number,
 		&ModelCite = ModelClass_Number;
-	//¼ì²éÎÄ¼ş½á¹¹ÍêÕûĞÔ
+	//æ£€æŸ¥æ–‡ä»¶ç»“æ„å®Œæ•´æ€§
 	if (Inspect(Location_Str, LocationClass_Number) &&
 		Inspect(BuildingElement_Str, BuildingElementClass_Number) &&
 		Inspect(Model_Str, ModelClass_Number))
@@ -289,27 +289,27 @@ int main()
 		<< ">" << Location_Str << ": " << LocationClass_Number << endl
 		<< ">" << BuildingElement_Str << ": " << BuildingElementClass_Number << endl
 		<< ">" << Model_Str << ": " << ModelClass_Number << endl;
-	//½«ËùÓĞĞèÒª²éÑ¯µÄÊµÀıÀàĞÍÊäÈëµ½ÄÚ´æµ±ÖĞ¡£
+	//å°†æ‰€æœ‰éœ€è¦æŸ¥è¯¢çš„å®ä¾‹ç±»å‹è¾“å…¥åˆ°å†…å­˜å½“ä¸­ã€‚
 	string* LocationClass = new string[LocationClass_Number+1],
 		  * BuildingElementClass = new string[BuildingElementClass_Number+1],
 		  * ModelClass = new string[ModelClass_Number+1];
 	LocationClass[0] = Location_Str;
 	BuildingElementClass[0] = BuildingElement_Str;
 	ModelClass[0] = Model_Str;
-	//½«ÊµÀıÀàĞÍÊäÈëÊı×éµ±ÖĞ
+	//å°†å®ä¾‹ç±»å‹è¾“å…¥æ•°ç»„å½“ä¸­
 	Inspect(LocationClass, LocationClass_Number);
 	Inspect(BuildingElementClass, BuildingElementClass_Number);
 	Inspect(ModelClass, ModelClass_Number);
-	//»ñÈ¡ÎÄ¼şÃû
+	//è·å–æ–‡ä»¶å
 	string FillName;
-	cout << "+ÇëÊäÈëÄúÏëÒª´¦ÀíµÄÎÄ¼şÂ·¾¶¼°Ãû×Ö£º";
+	cout << "+è¯·è¾“å…¥æ‚¨æƒ³è¦å¤„ç†çš„æ–‡ä»¶è·¯å¾„åŠåå­—ï¼š";
 	cin >> FillName;
 	ifstream Fill_In(FillName);
-	long IfcClassNum = 0;//IfcÎÄ¼şÊµÀıÊıÁ¿
-	long& IFCNum = IfcClassNum;//¶ÔÎÄ¼şÊµÀıÊıÁ¿µÄÒıÓÃ£¬·½±ãÀûÓÃº¯ÊıĞŞ¸Ä¡£
+	long IfcClassNum = 0;//Ifcæ–‡ä»¶å®ä¾‹æ•°é‡
+	long& IFCNum = IfcClassNum;//å¯¹æ–‡ä»¶å®ä¾‹æ•°é‡çš„å¼•ç”¨ï¼Œæ–¹ä¾¿åˆ©ç”¨å‡½æ•°ä¿®æ”¹ã€‚
 	clock_t Start, Finish;
 	double totaltime;
-	Start = clock();//¼ÆÊ±
+	Start = clock();//è®¡æ—¶
 	if (Fill_In)
 	{
 		SeparateClass(FillName,
@@ -318,17 +318,17 @@ int main()
 			ModelClass, ModelClass_Number,IFCNum);
 	}
 	else
-		cout << ">ÊäÈëÂ·¾¶»òÕßÎÄ¼ş²»´æÔÚ£¬³ÌĞò¼´½«¹Ø±Õ¡£" << endl;
-	cout << "±¾ÎÄ¼şÓĞ "<<IfcClassNum<<" ¸öÊµÀı¡£" << endl;
-	Finish = clock();//¼ÆÊ±½áÊø
+		cout << ">è¾“å…¥è·¯å¾„æˆ–è€…æ–‡ä»¶ä¸å­˜åœ¨ï¼Œç¨‹åºå³å°†å…³é—­ã€‚" << endl;
+	cout << "æœ¬æ–‡ä»¶æœ‰ "<<IfcClassNum<<" ä¸ªå®ä¾‹ã€‚" << endl;
+	Finish = clock();//è®¡æ—¶ç»“æŸ
 	totaltime = (double)(Finish - Start) / CLOCKS_PER_SEC;
-	cout << ">>´Ë´Î·ÖÀëÓÃÊ± " <<totaltime<<" Ãë¡£"<< endl;
+	cout << ">>æ­¤æ¬¡åˆ†ç¦»ç”¨æ—¶ " <<totaltime<<" ç§’ã€‚"<< endl;
 
-	//===¹Ø±Õ³ÌĞòÄ£¿é===
+	//===å…³é—­ç¨‹åºæ¨¡å—===
 	string End_String;
 	while (End_String != "End")
 	{
-		cout << "ÇëÊäÈë¡°End¡±ÒÔÖÕÖ¹³ÌĞò¡£" << endl;
+		cout << "è¯·è¾“å…¥â€œEndâ€ä»¥ç»ˆæ­¢ç¨‹åºã€‚" << endl;
 		cin >> End_String;
 	}
 	getchar();
